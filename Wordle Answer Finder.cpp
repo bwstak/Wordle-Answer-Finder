@@ -43,8 +43,8 @@ int main() {
     vector<string> words;
     string word;
 
-    std::cout << "Reading words from file..." << endl;
-    std::cout << "=========================" << endl;
+    cout << "Reading words from file..." << endl;
+    cout << "=========================" << endl;
 
     fstream file("words.txt");
     if (file.is_open()) {
@@ -57,30 +57,30 @@ int main() {
         file.close();
     }
     else {
-        std::cout << "Error: Failed to open file 'words.txt'." << endl;
+        cout << "Error: Failed to open file 'words.txt'." << endl;
         return 1;
     }
 
-    std::cout << "Loaded " << words.size() << " words." << endl;
+    cout << "Loaded " << words.size() << " words." << endl;
 
     int basesize = words.size();
-    std::cout << "Character frequencies:" << endl;
+    cout << "Character frequencies:" << endl;
     for (const auto& entry : charCount) {
-        std::cout << entry.first << ": " << entry.second << endl;
+        cout << entry.first << ": " << entry.second << endl;
     }
     charCount.clear();
     string result;
     string guess;
     string best;
-    std::cout << "Now lets start the wordle. I recommend to start with ADIEU, as it has the most common letters." << endl;
-    std::cout << "W - wrong, gray letter" << endl;
-    std::cout << "G - green, correct letter on correct spot" << endl;
-    std::cout << "Y - yellow, correct letter, but on wrong spot" << endl;
+    cout << "Now lets start the wordle. I recommend to start with ADIEU, as it has the most common letters." << endl;
+    cout << "W - wrong, gray letter" << endl;
+    cout << "G - green, correct letter on correct spot" << endl;
+    cout << "Y - yellow, correct letter, but on wrong spot" << endl;
     guess = "adieu";
 
 
         while (result != "GGGGG") {
-            std::cout << "Please enter the result (USE CAPITAL LETTERS):" << endl;
+            cout << "Please enter the result (USE CAPITAL LETTERS):" << endl;
             cin >> result;
             //result = wordle(guess, winword);
             if (result == "GGGGG") {
@@ -126,7 +126,7 @@ int main() {
                 }
             }
 
-            std::cout << basesize - words.size() << " words eliminated. " << words.size() << " remaining." << endl;
+            cout << basesize - words.size() << " words eliminated. " << words.size() << " remaining." << endl;
             basesize = words.size();
 
 
@@ -136,17 +136,17 @@ int main() {
                 }
             }
             //for (const auto& entry : charCount) {
-            //    std::cout << entry.first << ": " << entry.second << endl;
+            //    cout << entry.first << ": " << entry.second << endl;
             //}
 
             best = findMostValuableWord(words, charCount);
-            std::cout << "best word to guess is: " << best << endl;
+            cout << "best word to guess is: " << best << endl;
             guess = best;
             charCount.clear();
 
         }
 
     
-    std::cout << "Congrats, we did it!!!";
+    cout << "Congrats, we did it!!!";
     return 0;
 }
